@@ -14,7 +14,7 @@ Includes token-based authentication using JWTs. RSpec is used for testing.
 - **Database**: PostgreSQL  
 - **Authentication**: JSON Web Tokens (JWT)
 
-#Endpoints
+## Endpoints
 
 | Method   | Endpoint            | Description                      | Auth Required |
 | -------- | ------------------- | -------------------------------- | ------------- |
