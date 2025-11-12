@@ -16,15 +16,32 @@ Includes token-based authentication using JWTs. RSpec is used for testing.
 
 ## Endpoints
 
-| Method   | Endpoint            | Description                      | Auth Required |
-| -------- | ------------------- | -------------------------------- | ------------- |
-| `GET`    | `/api/v1/books`     | List all books (with pagination) | ❌             |
-| `GET`    | `/api/v1/books/:id` | Get a single book                | ❌             |
-| `POST`   | `/api/v1/books`     | Create a new book and author     | ✅             |
-| `PATCH`  | `/api/v1/books/:id` | Update a book and its author     | ✅             |
-| `DELETE` | `/api/v1/books/:id` | Delete a book                    | ✅             |
+| Method   | Endpoint               | Description                      | Auth Required |
+| -------- | ---------------------- | -------------------------------- | ------------- |
+| `POST`   | `/api/v1/users`        | Create a new user account        | ❌             |
+| `POST`   | `/api/v1/authenticate` | Authenticate a user and get JWT  | ❌             |
+| `GET`    | `/api/v1/books`        | List all books (with pagination) | ❌             |
+| `GET`    | `/api/v1/books/:id`    | Get a single book                | ❌             |
+| `POST`   | `/api/v1/books`        | Create a new book and author     | ✅             |
+| `PATCH`  | `/api/v1/books/:id`    | Update a book and its author     | ✅             |
+| `DELETE` | `/api/v1/books/:id`    | Delete a book                    | ✅             |
+
 
 ## Example Curl Requests
+- curl -X POST "http://localhost:3000/api/v1/users" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user": {
+      "username": "BookSeller99",
+      "password": "Password1"
+    }
+  }'
+- curl -X POST "http://localhost:3000/api/v1/authenticate" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "BookSeller99",
+    "password": "Password1"
+  }'
 - curl -X GET "http://localhost:3000/api/v1/books?limit=10&offset=0"
 - curl -X GET "http://localhost:3000/api/v1/books/2"
 - curl -X POST "http://localhost:3000/api/v1/books" \
@@ -36,19 +53,18 @@ Includes token-based authentication using JWTs. RSpec is used for testing.
   }'
 - curl -X PATCH "http://localhost:3000/api/v1/books/2" \
   -H "Content-Type: application/json" \
-  -H "Authorization: Token eyJhbGciOiJIUzI1NJ9.eyJ1c2VyX2lkIjoxfQ.DiPWrOKsx3sPeVClrm_j07XNdSYHgBa3Qctosdxax3w" \
+  -H "Authorization: Token YOUR JWT" \
   -d '{
     "book": { "title": "Animal Farm" },
     "author": { "first_name": "George", "last_name": "Orwell", "age": 47 }
   }'
 - curl -X DELETE "http://localhost:3000/api/v1/books/2" \
-  -H "Authorization: Token eyJhbGciOiJIUzI1NJ9.eyJ1c2VyX2lkIjoxfQ.DiPWrOKsx3sPeVClrm_j07XNdSYHgBa3Qctosdxax3w"
+  -H "Authorization: Token YOUR JWT"
 
 ## Authentication
 - HMAC_SECRET = 'my$ecretK3y'
 - ALGORITHM_TYPE = 'HS256'
 - payload = {user_id: user_id}
-- Valid JWT where user_id = 1 : eyJhbGciOiJIUzI1NJ9.eyJ1c2VyX2lkIjoxfQ.DiPWrOKsx3sPeVClrm_j07XNdSYHgBa3Qctosdxax3w
 
 ## Testing
 - This API uses RSpec for automated testing. All tests are located in the spec/ directory.
