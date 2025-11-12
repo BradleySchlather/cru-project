@@ -18,6 +18,15 @@ RSpec.describe Api::V1::BooksController, type: :controller do
         end
     end
 
+    describe 'PATCH update' do
+        context 'missing authorization header' do
+            it 'returns a 401' do
+                post :update, params: {}
+                expect(response).to have_http_status(:unauthorized)
+            end
+        end
+    end
+
     describe 'DELETE destroy' do
         context 'missing authorization header' do
             it 'returns a 401' do
