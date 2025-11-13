@@ -61,11 +61,6 @@ Includes token-based authentication using JWTs. RSpec is used for testing.
 - curl -X DELETE "http://localhost:3000/api/v1/books/2" \
   -H "Authorization: Token YOUR JWT"
 
-## Authentication
-- HMAC_SECRET = 'my$ecretK3y'
-- ALGORITHM_TYPE = 'HS256'
-- payload = {user_id: user_id}
-
 ## Testing
 - This API uses RSpec for automated testing. All tests are located in the spec/ directory.
 - Tests are automatically run on GitHub Actions via the workflow defined in .github/workflows/ci.yml

@@ -1,15 +1,17 @@
 class AuthenticationTokenService
-    HMAC_SECRET = 'my$ecretK3y'
+    JWT_SECRET_KEY = ENV.fetch('JWT_SECRET_KEY')
     ALGORITHM_TYPE = 'HS256'
 
     def self.encode(user_id)
-        payload = {user_id: user_id}
-
-        JWT.encode payload, HMAC_SECRET, ALGORITHM_TYPE
+        payload = {sub: user_id, iat: Time.now.to_i, exp: 1.hour.from_now.to_i}
+        
+        JWT.encode payload, JWT_SECRET_KEY, ALGORITHM_TYPE
     end
 
     def self.decode(token)
-       decoded_token = JWT.decode token, HMAC_SECRET, true, { algorithm: ALGORITHM_TYPE }
-       decoded_token[0]['user_id']
+        payload, _header = JWT.decode(token, JWT_SECRET_KEY, true, { algorithm: ALGORITHM_TYPE })
+        payload['sub']
+    rescue JWT::DecodeError, JWT::ExpiredSignature
+        nil
     end
 end

@@ -50,4 +50,5 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem 'jwt'
+  gem 'dotenv-rails', groups: [:development, :test]
 end
