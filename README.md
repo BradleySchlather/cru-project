@@ -63,4 +63,3 @@ Includes token-based authentication using JWTs. RSpec is used for testing.
 
 ## Testing
 - This API uses RSpec for automated testing. All tests are located in the spec/ directory.
-- Tests are automatically run on GitHub Actions via the workflow defined in .github/workflows/ci.yml
