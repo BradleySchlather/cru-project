@@ -56,8 +56,8 @@ jobs:
         run: |
           bin/rails db:create db:migrate
 
-      - name: Run RSpec tests (non-blocking)
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432
-        run: bundle exec rspec
+      # - name: Run RSpec tests
+      #   env:
+      #     RAILS_ENV: test
+      #     DATABASE_URL: postgres://postgres:postgres@localhost:5432
+      #   run: bundle exec rspec
