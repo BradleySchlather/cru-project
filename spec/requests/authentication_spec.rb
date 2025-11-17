@@ -1,7 +1,11 @@
+#NOTE: Requests test the full HTTP request/response cycle
+
 require 'rails_helper'
 
 describe 'Authentication', type: :request do
   describe 'POST /authenticate' do
+    #let is an Rspec helper to define a memoized variable. :user is the name of the variable.
+    #FactoryBot is a library for creating test objects. .create builds the object and saves it to the db.
     let(:user) { FactoryBot.create(:user, username: 'BookSeller99', password: 'Password1') }
 
     it 'authenticates the client and returns a valid token' do

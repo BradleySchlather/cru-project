@@ -1,3 +1,5 @@
+#NOTE: Requests test the full HTTP request/response cycle
+
 require 'rails_helper'
 
 RSpec.describe 'Users API', type: :request do

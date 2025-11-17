@@ -1,3 +1,5 @@
+#NOTE: Requests test the full HTTP request/response cycle
+
 require 'rails_helper'
 
 describe 'Books API', type: :request do

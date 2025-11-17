@@ -1,3 +1,6 @@
+#NOTE: Router maps the HTTP requests to controller actions
+#NOTE: Resources are used to define the routes
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
