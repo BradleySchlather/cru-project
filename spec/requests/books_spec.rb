@@ -3,7 +3,9 @@
 require 'rails_helper'
 
 describe 'Books API', type: :request do
-
+    #let! runs before every example, even if the var is never referenced
+    #FactoryBot is a library for creating test objects. .create builds the object and saves it to the db.
+    #We use let! here because the test requires the user to be created prior to the request
     let!(:user) { FactoryBot.create(:user, username: 'BookSeller99', password: 'Password1') }
 
     describe 'GET /books' do
@@ -17,19 +19,23 @@ describe 'Books API', type: :request do
 
         it 'returns all books' do
             get '/api/v1/books'
-    
+            
             expect(response).to have_http_status(:success)
             expect(response_body.size).to eq(2)
 
+            #Getting the mapped_books to prevent having to worry about the id
+            #The map method iterates through the array and executes the code inside the block, returning the new array
+            #The b is a temporary var. In this case it is just short for book. The slice method then
+            #creates a new hash that only contains the stated keys, which removes the id from the objects.
             mapped_books = response_body.map { |b| b.slice('title', 'author_name', 'author_age') }
 
             expected_books = [
-                { 
+                {
                     'title' => '1984',
                     'author_name' => 'George Orwell',
                     'author_age' => 46 
                 },
-                { 
+                {
                     'title' => 'The Great Gatsby',
                     'author_name' => 'H.G. Wells',
                     'author_age' => 78 
@@ -47,7 +53,7 @@ describe 'Books API', type: :request do
                 { 
                     'title' => '1984',
                     'author_name' => 'George Orwell',
-                    'author_age' => 46 
+                    'author_age' => 46
                 }
             )
         end

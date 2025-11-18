@@ -1,3 +1,5 @@
+#Gems are simply packages (libraries) that can be added to the Rails app for extra functionality
+
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

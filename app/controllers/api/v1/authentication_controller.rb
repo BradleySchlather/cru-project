@@ -17,7 +17,7 @@ module Api
 
         #User is the model. find_by is an ActiveRecord method that queries the database for the first record matching the given condition
         user = User.find_by(username: username)
-        #Will use the custom class if not authenticated
+        #Will use the custom class if not authenticated. & is the safe navigation operator. It will only call the method if the user object is not null
         raise AuthenticationError unless user&.authenticate(password)
 
         #Uses the auth token service to encode the user id, which will lead to the jwt being created
