@@ -1,3 +1,5 @@
+#Note: A representer is a layer that controls how your data is transformed into JSON or other
+#formats before being sent to the client. It plays a similar role to a DTO + serializer in .NET.
 class BooksRepresenter
     def initialize(books)
         @books = books

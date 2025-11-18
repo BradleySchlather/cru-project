@@ -27,6 +27,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_11_162931) do
     t.datetime "created_at", null: false
     t.string "title"
     t.datetime "updated_at", null: false
+    #Should create a foreign key for author_id with a new migration file
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
